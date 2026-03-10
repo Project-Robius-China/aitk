@@ -31,6 +31,10 @@ rfd = { version = "0.15.3", features = ["ashpd", "urlencoding", "xdg-portal"] }
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
 tokio = { version = "1", features = ["rt", "rt-multi-thread", "net", "fs", "time"], optional = true }
+axum = { version = "0.7", optional = true }
+rusqlite = { version = "0.32", features = ["bundled"], optional = true }
+tower-http = { version = "0.5", features = ["cors"], optional = true }
+uuid = { version = "1.18", features = ["v4"], optional = true }
 tokio-tungstenite = { version = "0.28", features = ["rustls-tls-webpki-roots"], optional = true }
 rmcp = { git = "https://www.github.com/modelcontextprotocol/rust-sdk", rev = "9349f5cb", features = ["transport-sse-client", "transport-sse-client-reqwest", "transport-streamable-http-client", "transport-streamable-http-client-reqwest", "transport-child-process", "client"], optional = true}
 
@@ -48,6 +52,9 @@ web-sys = { version = "0.3.77", features = [
   "Blob",
 ] }
 
+[dev-dependencies]
+tower = { version = "0.5", features = ["util"] }
+
 [features]
 default = []
 # default = ["full"]
@@ -56,4 +63,5 @@ async-rt = ["dep:tokio", "dep:wasm-bindgen-futures"]
 mcp = ["async-rt", "http", "dep:rmcp"]
 api-clients = ["http"]
 realtime-clients = ["async-rt", "dep:tokio-tungstenite"]
+telegram-server = ["async-rt", "http", "dep:axum", "dep:rusqlite", "dep:tower-http", "dep:uuid"]
 full = ["default", "async-rt", "http", "api-clients", "mcp", "realtime-clients"]
