@@ -1,0 +1,11 @@
+[package]
+name = "telegram-server-example"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+aitk = { path = "../..", features = ["telegram-server"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "signal"] }
+futures = "0.3"
+serde_json = "1"
+chrono = "0.4"
