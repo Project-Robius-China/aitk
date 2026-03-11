@@ -5,6 +5,7 @@ mod attachment;
 mod client;
 mod entity;
 mod message;
+mod quick_reply;
 mod realtime;
 mod tool;
 
@@ -12,6 +13,7 @@ pub use attachment::*;
 pub use client::*;
 pub use entity::*;
 pub use message::*;
+pub use quick_reply::*;
 pub use realtime::*;
 pub use tool::*;
 
