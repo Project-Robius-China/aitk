@@ -48,6 +48,12 @@ pub struct MessageContent {
     // a solution for later.
     pub data: Option<String>,
 
+    /// Quick reply buttons displayed below the message.
+    ///
+    /// Clicking a button injects its `action` text as a user message.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub quick_replies: Vec<QuickReplyButton>,
+
     /// Optional upgrade to realtime communication
     #[serde(skip)]
     pub upgrade: Option<Upgrade>,
@@ -63,6 +69,7 @@ impl MessageContent {
             && self.attachments.is_empty()
             && self.tool_calls.is_empty()
             && self.tool_results.is_empty()
+            && self.quick_replies.is_empty()
             && self.upgrade.is_none()
     }
 }
